@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A directory of businesses run by Aussie blokes — tradies, mechanics, brewers and more." />
+  <title>Blokes Businesses — Aussie blokes backing Aussie blokes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top">
+        <span class="logo-mark">BB</span>
+        <span class="logo-text">Blokes<span>Businesses</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#directory">Directory</a>
+        <a href="#how">How it works</a>
+        <button class="btn btn-hi" data-open-form>+ List your business</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">Aussie blokes backing Aussie blokes</p>
+      <h1>Need a tradie?<br /><span>Ask a mate first.</span></h1>
+      <p class="lead">
+        A directory of businesses run by blokes from the community — sparkies, chippies,
+        mechanics, brewers, accountants and everyone in between. Find someone local, or put
+        your own business on the board.
+      </p>
+      <form class="search" id="search-form">
+        <input type="search" id="q" placeholder="Try “hot water”, “decks” or “Geelong”" aria-label="Search businesses" />
+        <select id="state" aria-label="State"></select>
+        <a class="btn btn-hi" href="#directory">Find</a>
+      </form>
+      <div class="stats">
+        <div><strong id="stat-total">0</strong><span>businesses listed</span></div>
+        <div><strong id="stat-cats">0</strong><span>trade categories</span></div>
+        <div><strong id="stat-deals">0</strong><span>member deals</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="directory" id="directory">
+    <aside class="sidebar">
+      <h3>Trades</h3>
+      <ul id="cats"></ul>
+      <label class="toggle">
+        <input type="checkbox" id="deals-only" />
+        <span>Member deals only</span>
+      </label>
+    </aside>
+
+    <section class="results">
+      <div class="results-head">
+        <h2 id="results-title">All businesses</h2>
+        <span class="muted" id="results-count"></span>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty" hidden>
+        <p>Nobody on the board for that yet.</p>
+        <button class="btn btn-ghost" id="clear">Clear filters</button>
+        <button class="btn btn-hi" data-open-form>Be the first to list</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="how" id="how">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div>
+        <span class="step-num">1</span>
+        <h4>List it</h4>
+        <p>Run a business? Chuck it on the board — name, trade, where you work and how to reach you.</p>
+      </div>
+      <div>
+        <span class="step-num">2</span>
+        <h4>Offer a deal</h4>
+        <p>Optional, but blokes love a member discount. It gets you a hi-vis badge on your listing.</p>
+      </div>
+      <div>
+        <span class="step-num">3</span>
+        <h4>Get the call</h4>
+        <p>Members search by trade and state and ring you direct. No middleman, no lead fees.</p>
+      </div>
+    </div>
+    <button class="btn btn-hi btn-lg" data-open-form>List your business — it's free</button>
+  </section>
+
+  <footer class="footer">
+    <p>
+      A community-run directory for Aussie blokes in business. Not affiliated with Facebook or
+      any group admins. Listings are supplied by business owners — do your own checks on
+      licences and insurance before hiring.
+    </p>
+    <p class="muted">© <span id="year"></span> Blokes Businesses</p>
+  </footer>
+
+  <div class="modal-bg" id="modal" hidden>
+    <form class="modal" id="listing-form" novalidate>
+      <div class="modal-head">
+        <h2>List your business</h2>
+        <button type="button" class="x" data-close-form aria-label="Close">×</button>
+      </div>
+      <div class="fields">
+        <label class="full">Business name *<input name="name" maxlength="60" /></label>
+        <label>Trade *<select name="category" id="f-category"></select></label>
+        <label>State *<select name="state" id="f-state"></select></label>
+        <label>Suburb / area *<input name="suburb" maxlength="40" /></label>
+        <label>Phone *<input name="phone" inputmode="tel" maxlength="20" /></label>
+        <label class="full">Website or Facebook page<input name="website" placeholder="www.example.com.au" /></label>
+        <label class="full">What do you do? *<textarea name="blurb" rows="3" maxlength="200"></textarea></label>
+        <label class="full">Services (comma separated)<input name="tags" placeholder="Decks, Pergolas, Renos" /></label>
+        <label class="full">Member deal<input name="memberDeal" placeholder="e.g. 10% off for group members" maxlength="60" /></label>
+        <label class="check full"><input type="checkbox" name="veteranOwned" /> Veteran owned</label>
+      </div>
+      <p class="err" id="form-err" hidden></p>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close-form>Cancel</button>
+        <button type="submit" class="btn btn-hi">Put it on the board</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
